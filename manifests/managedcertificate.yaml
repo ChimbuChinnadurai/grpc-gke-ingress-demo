@@ -1,0 +1,8 @@
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: grpc-gke-ingress-demo
+spec:
+  domains:
+    - gke-grpc-ingress.chimbuc.dns.doit-playground.com

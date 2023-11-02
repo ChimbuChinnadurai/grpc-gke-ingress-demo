@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-gke-ingress-demo
+  labels:
+    app: grpc-gke-ingress-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-gke-ingress-demo
+  template:
+    metadata:
+      labels:
+        app: grpc-gke-ingress-demo
+    spec:
+      containers:
+      - name: grpc-gke-ingress-demo
+        image: simbu1290/grpc-server-streaming:v1
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "500Mi"
+          limits:
+            cpu: "250m"
+            memory: "500Mi"
+      - name: envoy
+        image: envoyproxy/envoy:v1.26-latest
+        ports:
+        - containerPort: 8443
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "500Mi"
+          limits:
+            cpu: "250m"
+            memory: "500Mi"
+        volumeMounts:
+        - name: envoy-config
+          mountPath: /etc/envoy/envoy.yaml
+          subPath: envoy.yaml
+        - name: grpc-gke-ingress-demo-tls
+          mountPath: /etc/certs
+      volumes:
+      - name: envoy-config
+        configMap:
+          name: envoy-config
+      - name: grpc-gke-ingress-demo-tls
+        secret:
+          secretName: grpc-gke-ingress-demo-tls

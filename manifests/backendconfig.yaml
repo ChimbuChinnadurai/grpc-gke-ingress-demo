@@ -1,0 +1,10 @@
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: grpc-gke-ingress-demo
+spec:
+  healthCheck:
+    requestPath: /healthz
+    port: 8443
+    type: HTTP2
