@@ -80,7 +80,7 @@ $ go build -o cli ./client
 
 And run the client:
 ```shell
-$ ./cli -server grpc-gke-ingress-demo.chimbuc.dns.doit-playground.com:443
+$ ./cli -server gke-grpc-ingress.chimbuc.dns.doit-playground.com:443
 rpc established to timeserver, starting to stream
 received message: current_timestamp: 2023-10-24T19:15:32Z
 received message: current_timestamp: 2023-10-24T19:15:33Z
