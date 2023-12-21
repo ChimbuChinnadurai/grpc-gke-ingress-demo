@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: grpc-gke-ingress-demo
   annotations:
+    cloud.google.com/neg: '{"ingress": true}'
     cloud.google.com/app-protocols: '{"grpc":"HTTP2"}'
     cloud.google.com/backend-config: '{"ports": {"8443":"grpc-gke-ingress-demo"}}'
 spec:
