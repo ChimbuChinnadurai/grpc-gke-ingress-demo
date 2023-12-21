@@ -7,6 +7,7 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "grpc-gke-ingress-demo-vip"
     networking.gke.io/managed-certificates: "grpc-gke-ingress-demo"
 spec:
+  ingressClassName: "gce"
   defaultBackend:
     service:
       name: grpc-gke-ingress-demo
